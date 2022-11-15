@@ -9,6 +9,9 @@ const PasteSchema: Schema = new Schema(
       type: String,
       required: true,
     },
+    link:{
+      type:String
+    },
     exposure: {
       type: String,
       enum: ["PUBLIC", "PRIVATE", "UNLISTED"],

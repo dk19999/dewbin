@@ -9,6 +9,7 @@ enum Exposure {
 interface IPaste {
   title?: string;
   body: string;
+  link:string;
   exposure?: Exposure;
   syntaxLanguage: string;
   createdBy?: Types.ObjectId;
