@@ -36,4 +36,13 @@ const PasteSchema: Schema = new Schema(
   { timestamps: true }
 );
 
+PasteSchema.pre('find', function() {
+  this.where({ isDeleted: {$ne:true} });
+});
+
+PasteSchema.pre('findOne', function() {
+  this.where({ isDeleted: {$ne:true} });
+});
+
+
 export default mongoose.models.Pastes || mongoose.model("Pastes", PasteSchema);
