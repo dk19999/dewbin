@@ -12,6 +12,10 @@ const PasteSchema: Schema = new Schema(
     link:{
       type:String
     },
+    isDeleted:{
+      type:Boolean,
+      default:false
+    },
     exposure: {
       type: String,
       enum: ["PUBLIC", "PRIVATE", "UNLISTED"],
