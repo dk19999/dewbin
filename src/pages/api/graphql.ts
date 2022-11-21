@@ -1,5 +1,6 @@
 import { ApolloServer } from 'apollo-server-micro';
 import { addResolversToSchema } from '@graphql-tools/schema';
+import { resolvers } from '../../schemas';
 import { loadSchemaSync } from "@graphql-tools/load";
 import  {GraphQLFileLoader} from "@graphql-tools/graphql-file-loader";
 import { connectDB } from '../../lib/db-connect';
@@ -11,7 +12,7 @@ const schema = loadSchemaSync("**/*.graphql", {
 
 const schemaWithResolvers =  addResolversToSchema({
   schema,
-  resolvers:{}
+  resolvers,
 });
 
 const apolloServer = new ApolloServer({ schema: schemaWithResolvers, introspection:true  });

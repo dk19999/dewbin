@@ -1,0 +1,44 @@
+enum Exposure {
+  PUBLIC
+  PRIVATE
+  UNLISTED
+}
+
+type Paste {
+  title: String
+  body: String!
+  link: String!
+  exposure: Exposure
+  syntaxLanguage: String!
+  createdBy: String
+  expireAt: String
+}
+
+extend type Query {
+  paste(link: String!): Paste
+  pastes: [Paste!]!
+}
+
+extend type Mutation {
+  pasteCreate(input: PasteCreateInput!): Paste
+  pasteUpdate(input: PasteUpdateInput!): Paste
+  pasteDelete(link: String!): Boolean!
+}
+
+input PasteCreateInput {
+  title: String
+  body: String!
+  exposure: Exposure
+  syntaxLanguage: String!
+  expiration: Int
+}
+
+input PasteUpdateInput {
+  link: String!
+  title: String
+  body: String
+  exposure: Exposure
+  syntaxLanguage: String
+  createdBy: String
+  expireAt: String
+}
