@@ -4,11 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "codegen": "graphql-codegen --config codegen.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@graphql-tools/graphql-file-loader": "^7.5.11",
+    "@graphql-tools/load": "^7.8.5",
+    "@graphql-tools/schema": "^9.0.10",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
@@ -21,5 +25,10 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.8.4"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "2.13.12",
+    "@graphql-codegen/typescript": "2.8.1",
+    "@graphql-codegen/typescript-resolvers": "^2.7.6"
   }
 }
