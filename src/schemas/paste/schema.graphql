@@ -1,3 +1,4 @@
+
 enum Exposure {
   PUBLIC
   PRIVATE
@@ -10,8 +11,8 @@ type Paste {
   link: String!
   exposure: Exposure
   syntaxLanguage: String!
-  createdBy: String
-  expireAt: String
+  createdBy: DateTime 
+  expireAt: DateTime
 }
 
 extend type Query {

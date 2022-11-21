@@ -1,3 +1,6 @@
+scalar DateTime
+
+
 type Query {
   _empty: String
   # define any root queries here
