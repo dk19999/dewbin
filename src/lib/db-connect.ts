@@ -1,29 +1,31 @@
 /* This is a database connection function*/
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
+import { NextApiRequest, NextApiResponse } from "next";
 
-let cached = global.mongoose;
+const connect = async () => {
+  const opts = {
+    bufferCommands: false,
+  };
 
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
-}
+  await mongoose
+    .connect(process.env.NEXT_PUBLIC_MONGODB_URI, opts)
+    .then(() => console.log(`connected to mongo`))
+    .catch((err) => console.log(err));
+};
 
-async function dbConnect() {
-  /* check if we have connection to our databse*/
- if (cached.conn) {
-    return cached.conn;
-  }
+export const connectDB =
+  (handler:Function) =>
+  async (req:NextApiRequest, res:NextApiResponse, ...restArgs:any[]) => {
+    if (mongoose.connections[0].readyState !== 1) {
+      await connect();
+    }
 
-  if (!cached.promise) {
-    const opts = {
-      bufferCommands: false,
-    };
+    return handler(req, res, restArgs);
+  };
 
-    cached.promise = mongoose.connect(process.env.NEXT_PUBLIC_MONGODB_URI, opts).then((mongoose) => {
-      return mongoose;
-    });
-  }
-  cached.conn = await cached.promise;
-  return cached.conn;
-}
+const db = mongoose.connection;
+db.once("ready", () =>
+  console.log(`connected to mongo`)
+);
 
-export default dbConnect;
+export default connectDB;
