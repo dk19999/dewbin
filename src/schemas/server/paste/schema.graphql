@@ -13,6 +13,7 @@ type Paste {
   syntaxLanguage: String!
   createdBy: DateTime 
   expireAt: DateTime
+  isDeleted: Boolean
 }
 
 extend type Query {

@@ -1,7 +1,7 @@
-import UnusedKeyModel from "../../models/unused-key";
-import UsedKeyModel from "../../models/used-key";
-import PasteModel from "../../models/paste";
-import { MutationResolvers, Paste } from "../../generated/graphql";
+import UnusedKeyModel from "../../../models/unused-key";
+import UsedKeyModel from "../../../models/used-key";
+import PasteModel from "../../../models/paste";
+import { MutationResolvers, Paste } from "../../../generated/server-graphql";
 
 function addHours(numOfHours: number, date = new Date()) {
   console.log("🚀 ~ file: mutation.ts ~ line 6 ~ addHours ~ date", date);
