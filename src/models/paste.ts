@@ -9,12 +9,12 @@ const PasteSchema: Schema = new Schema(
       type: String,
       required: true,
     },
-    link:{
-      type:String
+    link: {
+      type: String,
     },
-    isDeleted:{
-      type:Boolean,
-      default:false
+    isDeleted: {
+      type: Boolean,
+      default: false,
     },
     exposure: {
       type: String,
@@ -30,19 +30,22 @@ const PasteSchema: Schema = new Schema(
       ref: "User",
     },
     expireAt: {
-      type:Date,
+      type: Date,
     },
   },
   { timestamps: true }
 );
 
-PasteSchema.pre('find', function() {
-  this.where({ isDeleted: {$ne:true} });
+PasteSchema.pre("find", function () {
+  const date = new Date();
+  this.where({
+    isDeleted: { $ne: true },
+    $or: [{ expireAt: { $gte: date } }, { expireAt: null }],
+  });
 });
 
-PasteSchema.pre('findOne', function() {
-  this.where({ isDeleted: {$ne:true} });
+PasteSchema.pre("findOne", function () {
+  this.where({ isDeleted: { $ne: true } });
 });
-
 
 export default mongoose.models.Pastes || mongoose.model("Pastes", PasteSchema);
