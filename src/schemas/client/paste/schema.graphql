@@ -1,0 +1,35 @@
+query getPastes {
+  pastes {
+    title
+    body
+    syntaxLanguage
+    exposure
+  }
+}
+
+query getRecentPastes {
+  recentPastes {
+    title
+    body
+    syntaxLanguage
+    exposure
+    link
+    createdAt
+  }
+}
+
+query getSinglePaste($input: String!) {
+  paste(link: $input) {
+    title
+    body
+    syntaxLanguage
+    exposure
+    link
+  }
+}
+
+mutation createPaste($input: PasteCreateInput!) {
+  pasteCreate(input: $input) {
+    link
+  }
+}
