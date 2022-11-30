@@ -1,4 +1,3 @@
-
 enum Exposure {
   PUBLIC
   PRIVATE
@@ -11,14 +10,16 @@ type Paste {
   link: String!
   exposure: Exposure
   syntaxLanguage: String!
-  createdBy: DateTime 
+  createdBy: DateTime
   expireAt: DateTime
   isDeleted: Boolean
+  createdAt: DateTime
 }
 
 extend type Query {
   paste(link: String!): Paste
   pastes: [Paste!]!
+  recentPastes: [Paste!]
 }
 
 extend type Mutation {

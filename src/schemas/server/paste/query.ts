@@ -1,10 +1,19 @@
-import { QueryResolvers } from "../../../generated/graphql";
+import { QueryResolvers } from "../../../generated/server-graphql";
 import PasteModel from "../../../models/paste";
 const Query: QueryResolvers = {
   pastes: async (_, __, { db }) => {
     const pastes = await PasteModel.find({});
     console.log("🚀 ~ file: query.ts ~ line 8 ~ pastes: ~ pastes", pastes);
     return pastes;
+  },
+  recentPastes: async (_, __, { db }) => {
+    const recentPastes = await PasteModel.find({ exposure: "PUBLIC" }).sort('-createdAt').limit(20);
+
+    console.log(
+      "🚀 ~ file: query.ts ~ line 8 ~ recentPastes: ~ recentPastes",
+      recentPastes
+    );
+    return recentPastes;
   },
   paste: async (parent, args, { db }) => {
     const { link } = args;
