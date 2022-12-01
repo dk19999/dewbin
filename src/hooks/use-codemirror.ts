@@ -2,9 +2,9 @@ import { useContext, useEffect, useRef } from "react";
 import { EditorState, StateEffect } from "@codemirror/state";
 import { EditorView, highlightActiveLine, lineNumbers } from "@codemirror/view";
 import { history } from "@codemirror/commands";
-import { indentOnInput } from "@codemirror/language";
+import { indentOnInput, syntaxHighlighting } from "@codemirror/language";
 import PasteContext from "../contexts/paste";
-
+import {oneDark, oneDarkHighlightStyle} from '@codemirror/theme-one-dark'
 export const transparentTheme = EditorView.theme({
   "&": {
     backgroundColor: "transparent !important",
@@ -34,6 +34,7 @@ const useCodeMirror = <T extends Element>(props: Props) => {
       history(),
       indentOnInput(),
       lineNumbers(),
+      oneDark,
       ...(!pasteState?.selectedLanguageData
         ? []
         : pasteState.selectedLanguageData),
@@ -47,6 +48,7 @@ const useCodeMirror = <T extends Element>(props: Props) => {
       }),
       EditorView.editable.of(isEditorEditable),
       EditorView.lineWrapping,
+      syntaxHighlighting(oneDarkHighlightStyle , { fallback: true }),
     ];
     if (!editor.current) {
       const newEditorView = new EditorView({
