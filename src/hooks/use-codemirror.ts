@@ -47,6 +47,14 @@ const useCodeMirror = <T extends Element>(props: Props) => {
           onChange && onChange(update.state);
         }
       }),
+      EditorView.domEventHandlers({
+        paste(e) {
+          if (isEditorEditable) {
+            return;
+          }
+          e.preventDefault();
+        },
+      }),
       EditorView.editable.of(isEditorEditable),
       EditorView.lineWrapping,
       syntaxHighlighting(oneDarkHighlightStyle , { fallback: true }),
