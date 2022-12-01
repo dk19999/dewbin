@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef } from "react";
 import { EditorState, StateEffect } from "@codemirror/state";
-import { EditorView, highlightActiveLine } from "@codemirror/view";
+import { EditorView, highlightActiveLine, lineNumbers } from "@codemirror/view";
 import { history } from "@codemirror/commands";
 import { indentOnInput } from "@codemirror/language";
 import PasteContext from "../contexts/paste";
@@ -33,7 +33,7 @@ const useCodeMirror = <T extends Element>(props: Props) => {
     const extensions = [
       history(),
       indentOnInput(),
-
+      lineNumbers(),
       ...(!pasteState?.selectedLanguageData
         ? []
         : pasteState.selectedLanguageData),
