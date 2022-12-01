@@ -55,7 +55,17 @@ const useCodeMirror = <T extends Element>(props: Props) => {
           e.preventDefault();
         },
       }),
-      EditorView.editable.of(isEditorEditable),
+      EditorView.theme({
+        "&": {
+          fontSize: `14px`,
+        },
+        ".cm-content": {
+          fontFamily: "Menlo, Monaco, Lucida Console, monospace",
+        },
+        ".cm-scroller": {
+        },
+      }),
+      // EditorView.editable.of(isEditorEditable),
       EditorView.lineWrapping,
       syntaxHighlighting(oneDarkHighlightStyle , { fallback: true }),
     ];
