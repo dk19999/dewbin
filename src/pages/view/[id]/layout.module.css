@@ -1,0 +1,14 @@
+.clone-btn{
+  margin: 0 0.5rem;
+}
+
+.download-btn, .clone-btn {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid;
+  background-color: transparent;
+  /* margin: 0 0.25rem; */
+  cursor: pointer;
+  size: 10px;
+}
+
+

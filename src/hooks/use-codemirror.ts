@@ -65,7 +65,7 @@ const useCodeMirror = <T extends Element>(props: Props) => {
         ".cm-scroller": {
         },
       }),
-      // EditorView.editable.of(isEditorEditable),
+      EditorView.editable.of(isEditorEditable),
       EditorView.lineWrapping,
       syntaxHighlighting(oneDarkHighlightStyle , { fallback: true }),
     ];
