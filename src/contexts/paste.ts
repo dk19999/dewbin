@@ -1,11 +1,5 @@
 import React, { Dispatch } from "react";
-
-enum Exposure {
-  Private = 'PRIVATE',
-  Public = 'PUBLIC',
-  Unlisted = 'UNLISTED'
-}
-
+import { Exposure } from "../generated/client-graphql";
 
 export interface IPasteContextState {
   title: string;

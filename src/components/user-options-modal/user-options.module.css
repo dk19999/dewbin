@@ -1,0 +1,10 @@
+.modal-option{
+  padding: 1rem 2rem;
+  width: 100%;
+}
+
+.modal-option:hover {
+  background-color: #00ffa5;
+  color: black;
+  cursor: pointer;
+}

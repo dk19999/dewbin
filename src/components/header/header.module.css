@@ -18,3 +18,15 @@
   margin-right: 2rem;
   cursor: pointer;
 }
+
+.avatar {
+  display: none;
+  margin-right: 20px;
+}
+
+@media (min-width: 768px) {
+  .avatar {
+    display: block;
+  }
+
+}
