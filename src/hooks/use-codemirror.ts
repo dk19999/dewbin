@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from "react";
 import { EditorState, StateEffect } from "@codemirror/state";
 import { EditorView, highlightActiveLine, keymap, lineNumbers } from "@codemirror/view";
-import { defaultKeymap, history, indentLess, indentMore } from "@codemirror/commands";
+import { defaultKeymap, history, indentLess, insertTab } from "@codemirror/commands";
 import { bracketMatching, indentOnInput, syntaxHighlighting } from "@codemirror/language";
 import PasteContext from "../contexts/paste";
 import {oneDark, oneDarkHighlightStyle} from '@codemirror/theme-one-dark'
@@ -41,7 +41,7 @@ const useCodeMirror = <T extends Element>(props: Props) => {
         {
           key: "Tab",
           preventDefault: true,
-          run: indentMore,
+          run: insertTab,
         },
         {
           key: "Shift-Tab",
