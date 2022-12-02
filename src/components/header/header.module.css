@@ -1,0 +1,20 @@
+.header {
+  position: sticky;
+  top: 0;
+  background-color: #3b3b47;
+  z-index: 2;
+  padding: 0.75rem 1rem;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 24px;
+  margin-right: 2rem;
+  cursor: pointer;
+}
