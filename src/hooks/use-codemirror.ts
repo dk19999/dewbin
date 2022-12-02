@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from "react";
 import { EditorState, StateEffect } from "@codemirror/state";
-import { EditorView, highlightActiveLine, lineNumbers } from "@codemirror/view";
-import { history } from "@codemirror/commands";
+import { EditorView, highlightActiveLine, keymap, lineNumbers } from "@codemirror/view";
+import { defaultKeymap, history, indentLess, indentMore } from "@codemirror/commands";
 import { bracketMatching, indentOnInput, syntaxHighlighting } from "@codemirror/language";
 import PasteContext from "../contexts/paste";
 import {oneDark, oneDarkHighlightStyle} from '@codemirror/theme-one-dark'
@@ -36,6 +36,19 @@ const useCodeMirror = <T extends Element>(props: Props) => {
       lineNumbers(),
       bracketMatching(),
       oneDark,
+      keymap.of([
+        ...defaultKeymap,
+        {
+          key: "Tab",
+          preventDefault: true,
+          run: indentMore,
+        },
+        {
+          key: "Shift-Tab",
+          preventDefault: true,
+          run: indentLess,
+        },
+      ]),
       ...(!pasteState?.selectedLanguageData
         ? []
         : pasteState.selectedLanguageData),
