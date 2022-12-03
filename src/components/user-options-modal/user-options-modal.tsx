@@ -44,6 +44,12 @@ function UserOptionsModal({ handleClose }: { handleClose: () => void }) {
           >
             <span className="option-text">Create new paste</span>
           </div>
+          <div
+            className={styles?.["modal-option"]}
+            onClick={() => router.push("/public-pastes")}
+          >
+            <span className="option-text">Public Pastes</span>
+          </div>
         </div>
       </Modal>
     </div>
