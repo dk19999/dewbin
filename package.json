@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "codegen": "graphql-codegen --config codegen.ts --watch",
+    "postinstall": "npm run codegen",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
