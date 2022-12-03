@@ -1,49 +1,45 @@
-import { ApolloServer } from 'apollo-server-micro';
-import { addResolversToSchema } from '@graphql-tools/schema';
-import { resolvers } from '../../schemas/server';
+import { ApolloServer } from "apollo-server-micro";
+import { addResolversToSchema } from "@graphql-tools/schema";
+import { resolvers } from "../../schemas/server";
 import { loadSchemaSync } from "@graphql-tools/load";
-import  {GraphQLFileLoader} from "@graphql-tools/graphql-file-loader";
-import { connectDB } from '../../lib/db-connect';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
+import { connectDB } from "../../lib/db-connect";
+import Cors from "micro-cors";
+
+const cors = Cors();
 
 const schema = loadSchemaSync("**/*.graphql", {
   loaders: [new GraphQLFileLoader()],
 });
 
-const schemaWithResolvers =  addResolversToSchema({
+const schemaWithResolvers = addResolversToSchema({
   schema,
   resolvers,
 });
 
-const apolloServer = new ApolloServer({ schema: schemaWithResolvers, introspection:true  });
+const apolloServer = new ApolloServer({
+  schema: schemaWithResolvers,
+  introspection: true,
+});
 
-const startServer = apolloServer.start()
+const startServer = apolloServer.start();
 
-async function handler(req:NextApiRequest, res:NextApiResponse) {
-  res.setHeader('Access-Control-Allow-Credentials', 'true')
-  res.setHeader(
-    'Access-Control-Allow-Origin',
-    'https://studio.apollographql.com'
-  )
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  )
-  if (req.method === 'OPTIONS') {
-    res.end()
-    return false
-  }
+export default connectDB(
+  cors(async function handler(req, res) {
+    if (req.method === "OPTIONS") {
+      res.end();
+      return false;
+    }
 
-  await startServer
-  await apolloServer.createHandler({
-    path: '/api/graphql',
-  })(req, res)
-}
+    await startServer;
+    await apolloServer.createHandler({
+      path: "/api/graphql",
+    })(req, res);
+  })
+);
+
 export const config = {
   api: {
-    bodyParser: false
-  }
+    bodyParser: false,
+  },
 };
-
-
-export default connectDB(handler)
