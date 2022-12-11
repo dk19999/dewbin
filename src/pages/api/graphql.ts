@@ -7,7 +7,7 @@ const cors = Cors();
 
 const apolloServer = new ApolloServer({
   schema: schema,
-  introspection: true,
+  introspection: process.env.NODE_ENV !== 'production',
 });
 
 const startServer = apolloServer.start();
