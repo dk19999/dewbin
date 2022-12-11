@@ -1,3 +1,5 @@
+const { loadEnvConfig } = require('@next/env')
+loadEnvConfig(process.cwd())
 import type { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
@@ -17,7 +19,7 @@ const config: CodegenConfig = {
       ],
       config: {
         fetcher: {
-          endpoint: "http://localhost:3000/api/graphql",
+          endpoint: process.env.NEXT_PUBLIC_SCHEMA_PATH,
           fetchParams: JSON.stringify({
             headers: {
               "Content-Type": "application/json",
