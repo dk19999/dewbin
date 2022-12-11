@@ -8,7 +8,7 @@ import Cors from "micro-cors";
 
 const cors = Cors();
 
-const schema = loadSchemaSync("**/*.graphql", {
+const schema = loadSchemaSync("../../schemas/server/**/*.graphql", {
   loaders: [new GraphQLFileLoader()],
 });
 
