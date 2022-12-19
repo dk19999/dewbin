@@ -5,7 +5,6 @@ export const AvatarIcon = (props) => (
     strokeWidth={0}
     viewBox="0 0 496 512"
     height="2rem"
-    margin="2rem"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
@@ -14,13 +13,13 @@ export const AvatarIcon = (props) => (
       stroke="none"
     />
   </svg>
-);
+)
 
 export const closeIcon = (
   <svg
     stroke="white"
     fill="white"
-    stroke-width="0"
+    strokeWidth="0"
     viewBox="0 0 24 24"
     height="1.5em"
     width="1.5em"
@@ -29,8 +28,8 @@ export const closeIcon = (
     <path
       fill="none"
       stroke="white"
-      stroke-width="2"
+      strokeWidth="2"
       d="M7,7 L17,17 M7,17 L17,7"
     ></path>
   </svg>
-);
+)

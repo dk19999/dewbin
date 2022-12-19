@@ -1,10 +1,10 @@
 declare namespace globalThis {
-  var mongoose: any;
+  var mongoose: any
 }
 
 declare module '*.graphql' {
-  import { DocumentNode } from 'graphql';
-  const Schema: DocumentNode;
+  import { DocumentNode } from 'graphql'
+  const Schema: DocumentNode
 
-  export = Schema;
+  export = Schema
 }

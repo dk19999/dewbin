@@ -1,19 +1,19 @@
-import mongoose, {  Document, Schema } from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose'
 
 export interface IUsedKey extends Document {
-  value: string;
+  value: string
 
 }
 
-const UsedKeySchema:Schema = new Schema<IUsedKey>(
+const UsedKeySchema: Schema = new Schema<IUsedKey>(
   {
- 
+
     value: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
   { timestamps: true }
-);
+)
 
-export default mongoose.models.UsedKeys || mongoose.model('UsedKeys', UsedKeySchema);
+export default mongoose.models.UsedKeys || mongoose.model('UsedKeys', UsedKeySchema)

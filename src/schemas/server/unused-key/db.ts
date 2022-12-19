@@ -1,35 +1,35 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose'
 
 const PasteSchema: Schema = new Schema(
   {
     title: {
-      type: String,
+      type: String
     },
     body: {
       type: String,
-      required: true,
+      required: true
     },
-    link:{
-      type:String
+    link: {
+      type: String
     },
     exposure: {
       type: String,
-      enum: ["PUBLIC", "PRIVATE", "UNLISTED"],
-      default: "PUBLIC",
+      enum: ['PUBLIC', 'PRIVATE', 'UNLISTED'],
+      default: 'PUBLIC'
     },
     syntaxLanguage: {
       type: String,
-      required: true,
+      required: true
     },
     createdBy: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User'
     },
     expireAt: {
-      type:Date,
-    },
+      type: Date
+    }
   },
   { timestamps: true }
-);
+)
 
-export default mongoose.models.Pastes || mongoose.model("Pastes", PasteSchema);
+export default mongoose.models.Pastes || mongoose.model('Pastes', PasteSchema)

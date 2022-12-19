@@ -1,5 +1,5 @@
-import Head from "next/head";
-import React, { ReactElement, ReactNode } from "react";
+import Head from 'next/head'
+import React, { ReactElement, ReactNode } from 'react'
 const Layout = ({ children }: { children: ReactNode }): ReactElement => {
   return (
     <>
@@ -10,7 +10,7 @@ const Layout = ({ children }: { children: ReactNode }): ReactElement => {
         <main>{children}</main>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

@@ -1,51 +1,51 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose'
 
 const PasteSchema: Schema = new Schema(
   {
     title: {
-      type: String,
+      type: String
     },
     body: {
       type: String,
-      required: true,
+      required: true
     },
     link: {
-      type: String,
+      type: String
     },
     isDeleted: {
       type: Boolean,
-      default: false,
+      default: false
     },
     exposure: {
       type: String,
-      enum: ["PUBLIC", "PRIVATE", "UNLISTED"],
-      default: "PUBLIC",
+      enum: ['PUBLIC', 'PRIVATE', 'UNLISTED'],
+      default: 'PUBLIC'
     },
     syntaxLanguage: {
       type: String,
-      required: true,
+      required: true
     },
     createdBy: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User'
     },
     expireAt: {
-      type: Date,
-    },
+      type: Date
+    }
   },
   { timestamps: true }
-);
+)
 
-PasteSchema.pre("find", function () {
-  const date = new Date();
+PasteSchema.pre('find', function () {
+  const date = new Date()
   this.where({
     isDeleted: { $ne: true },
-    $or: [{ expireAt: { $gte: date } }, { expireAt: null }],
-  });
-});
+    $or: [{ expireAt: { $gte: date } }, { expireAt: null }]
+  })
+})
 
-PasteSchema.pre("findOne", function () {
-  this.where({ isDeleted: { $ne: true } });
-});
+PasteSchema.pre('findOne', function () {
+  this.where({ isDeleted: { $ne: true } })
+})
 
-export default mongoose.models.Pastes || mongoose.model("Pastes", PasteSchema);
+export default mongoose.models.Pastes || mongoose.model('Pastes', PasteSchema)

@@ -1,23 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react'
 
 type Event = MouseEvent | TouchEvent
 
-function useOnClickOutside(ref:React.MutableRefObject<HTMLElement | null>, handler:(event:Event) => void) {
+function useOnClickOutside (ref: React.MutableRefObject<HTMLElement | null>, handler: (event: Event) => void) {
   useEffect(
     () => {
-      const listener = (event:Event) => {
+      const listener = (event: Event) => {
         // Do nothing if clicking ref's element or descendent elements
-        if (!ref.current || ref.current.contains(<Node>(event!.target))) {
-          return;
+        // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+        if ((ref.current == null) || ref.current.contains(<Node>(event.target))) {
+          return
         }
-        handler(event);
-      };
-      document.addEventListener("mousedown", listener);
-      document.addEventListener("touchstart", listener);
+        handler(event)
+      }
+      document.addEventListener('mousedown', listener)
+      document.addEventListener('touchstart', listener)
       return () => {
-        document.removeEventListener("mousedown", listener);
-        document.removeEventListener("touchstart", listener);
-      };
+        document.removeEventListener('mousedown', listener)
+        document.removeEventListener('touchstart', listener)
+      }
     },
     // Add ref and handler to effect dependencies
     // It's worth noting that because passed in handler is a new ...
@@ -26,6 +27,6 @@ function useOnClickOutside(ref:React.MutableRefObject<HTMLElement | null>, handl
     // ... but to optimize you can wrap handler in useCallback before ...
     // ... passing it into this hook.
     [ref, handler]
-  );
+  )
 }
-export default useOnClickOutside;
+export default useOnClickOutside

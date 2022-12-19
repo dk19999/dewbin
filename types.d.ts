@@ -1,4 +1,4 @@
-import { Types } from "mongoose";
+import { Types } from 'mongoose'
 
 enum Exposure {
   PUBLIC,
@@ -7,18 +7,18 @@ enum Exposure {
 }
 
 interface IPaste {
-  title?: string;
-  body: string;
-  link:string;
-  exposure?: Exposure;
-  syntaxLanguage: string;
-  createdBy?: Types.ObjectId;
-  expireAt?: Date;
+  title?: string
+  body: string
+  link: string
+  exposure?: Exposure
+  syntaxLanguage: string
+  createdBy?: Types.ObjectId
+  expireAt?: Date
 }
 
 interface IUser {
-  name: string;
-  email: string;
-  password: string;
-  role:string;  
+  name: string
+  email: string
+  password: string
+  role: string
 }
