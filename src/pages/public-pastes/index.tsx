@@ -31,7 +31,10 @@ function PublicPastes () {
                   <td>
                     <a href={`/view/${paste.link ?? '#'}`}>
                       {' '}
-                      {paste.title || 'Untitled'}
+                      {
+                      // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+                      paste.title || 'Untitled'
+                      }
                     </a>
                   </td>
                   <td>{formatTimeAgo(paste.createdAt)}</td>
