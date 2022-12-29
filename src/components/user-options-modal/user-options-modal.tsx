@@ -26,6 +26,10 @@ function UserOptionsModal ({ handleClose }: { handleClose: () => void }) {
     router.push('/')
   }
 
+  const goToPublicPastesPage = () => {
+    router.push('/public-pastes')
+  }
+
   return (
     <div>
       <Modal
@@ -48,7 +52,7 @@ function UserOptionsModal ({ handleClose }: { handleClose: () => void }) {
           </div>
           <div
             className={styles?.['modal-option']}
-            onClick={goToHome}
+            onClick={goToPublicPastesPage}
           >
             <span className="option-text">Public Pastes</span>
           </div>
