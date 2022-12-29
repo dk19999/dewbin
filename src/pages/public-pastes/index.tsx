@@ -31,7 +31,7 @@ function PublicPastes () {
                   <td>
                     <a href={`/view/${paste.link ?? '#'}`}>
                       {' '}
-                      {paste.title ?? 'Untitled'}
+                      {paste.title || 'Untitled'}
                     </a>
                   </td>
                   <td>{formatTimeAgo(paste.createdAt)}</td>
